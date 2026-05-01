@@ -99,6 +99,7 @@ function bootApp() {
   loadStylesheet('css/privacy.css');
   loadStylesheet('css/product-card.css');
   loadStylesheet('css/product-modal.css');
+  loadStylesheet('css/admin-upgrade.css');
   injectPrivacyControls();
   renderAll();
 }
