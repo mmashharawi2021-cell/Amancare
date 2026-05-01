@@ -1,0 +1,115 @@
+/* Privacy Mode: only affects sensitive product content, not the whole page. */
+.privacy-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.privacy-toggle,
+.hide-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-dark);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.hide-now {
+  color: #0f172a;
+}
+
+.privacy-on .card.is-sensitive .sensitive-image,
+.privacy-on .card.is-sensitive .sensitive-title,
+.privacy-on .card.is-sensitive .sensitive-desc {
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.privacy-on .card.is-sensitive:not(:hover):not(.temporary-reveal) .sensitive-image {
+  filter: blur(14px);
+  transform: scale(1.02);
+}
+
+.privacy-on .card.is-sensitive:not(:hover):not(.temporary-reveal) .sensitive-title,
+.privacy-on .card.is-sensitive:not(:hover):not(.temporary-reveal) .sensitive-desc {
+  color: transparent;
+  text-shadow: 0 0 12px rgba(15, 23, 42, 0.42);
+  user-select: none;
+}
+
+.privacy-on .card.is-sensitive:not(:hover):not(.temporary-reveal)::after {
+  content: "محتوى حساس — مرّر أو اضغط عرض المنتج";
+  position: absolute;
+  inset: 18px 18px auto 18px;
+  z-index: 2;
+  padding: 10px 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.reveal-btn {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--primary-dark);
+  border: 1px solid rgba(14, 165, 233, 0.18);
+  font-weight: 900;
+}
+
+.privacy-off .reveal-btn {
+  display: none;
+}
+
+@media (hover: none) {
+  .privacy-on .card.is-sensitive .reveal-btn {
+    display: block;
+  }
+
+  .privacy-on .card.is-sensitive:hover .sensitive-image {
+    filter: blur(14px);
+  }
+
+  .privacy-on .card.is-sensitive:hover .sensitive-title,
+  .privacy-on .card.is-sensitive:hover .sensitive-desc {
+    color: transparent;
+    text-shadow: 0 0 12px rgba(15, 23, 42, 0.42);
+  }
+
+  .privacy-on .card.is-sensitive.temporary-reveal .sensitive-image {
+    filter: none;
+    transform: none;
+  }
+
+  .privacy-on .card.is-sensitive.temporary-reveal .sensitive-title,
+  .privacy-on .card.is-sensitive.temporary-reveal .sensitive-desc {
+    color: inherit;
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .privacy-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .privacy-toggle,
+  .hide-now {
+    flex: 1;
+    justify-content: center;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
