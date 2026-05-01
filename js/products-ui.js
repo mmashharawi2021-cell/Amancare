@@ -46,13 +46,77 @@ function getVisibleProducts() {
   });
 }
 
+function ensureProductModal() {
+  if (document.getElementById('productModalBackdrop')) return;
+
+  const modal = document.createElement('div');
+  modal.id = 'productModalBackdrop';
+  modal.className = 'product-modal-backdrop';
+  modal.innerHTML = '<div class="product-modal" id="productModal"></div>';
+  modal.addEventListener('click', (event) => {
+    if (event.target.id === 'productModalBackdrop') closeProductDetails();
+  });
+  document.body.appendChild(modal);
+}
+
+function closeProductDetails() {
+  const backdrop = document.getElementById('productModalBackdrop');
+  if (backdrop) backdrop.classList.remove('open');
+}
+
+function revealModalDetails() {
+  const modal = document.getElementById('productModal');
+  if (!modal) return;
+  modal.classList.remove('modal-sensitive-hidden');
+}
+
 function showProductDetails(productId) {
   const product = appState.products.find((item) => item.id === productId);
   if (!product) return;
 
-  const stock = product.inStock ? 'متوفر' : 'غير متوفر حالياً';
-  const oldPrice = product.oldPrice ? `\nالسعر السابق: ${money(product.oldPrice)}` : '';
-  alert(`${product.name}\n\n${product.desc}\n\nالحالة: ${stock}\nالسعر الحالي: ${money(product.price)}${oldPrice}`);
+  ensureProductModal();
+
+  const backdrop = document.getElementById('productModalBackdrop');
+  const modal = document.getElementById('productModal');
+  const stockClass = product.inStock ? 'available' : 'unavailable';
+  const stockLabel = product.inStock ? 'متوفر' : 'غير متوفر حالياً';
+  const oldPrice = product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : '';
+  const canMask = appState.privacyMode && product.isSensitive;
+  const addAction = product.inStock
+    ? `<button class="pill primary full" onclick="addToCart(${product.id}); closeProductDetails();">أضف إلى السلة</button>`
+    : '<button class="pill full" disabled>غير متوفر حالياً</button>';
+  const revealAction = canMask
+    ? '<button class="pill full" onclick="revealModalDetails()">عرض التفاصيل الحساسة مؤقتاً</button>'
+    : '';
+
+  modal.className = `product-modal ${canMask ? 'modal-sensitive-hidden' : ''}`;
+  modal.innerHTML = `
+    <div class="product-modal-head">
+      <h2 class="product-modal-title modal-sensitive-content">${product.name}</h2>
+      <button class="product-modal-close" onclick="closeProductDetails()" aria-label="إغلاق">×</button>
+    </div>
+    <div class="product-modal-visual">
+      <span>${product.icon || '💊'}</span>
+    </div>
+    <div class="product-modal-meta">
+      <span class="product-modal-chip ${stockClass}">${stockLabel}</span>
+      <span class="product-modal-chip">${product.categoryLabel}</span>
+      ${product.offer ? '<span class="product-modal-chip">عرض خاص</span>' : ''}
+    </div>
+    <p class="product-modal-desc modal-sensitive-content">${product.desc}</p>
+    <div class="product-modal-price">
+      <strong>${money(product.price)}</strong>
+      ${oldPrice}
+    </div>
+    <div class="product-modal-actions">
+      ${addAction}
+      ${revealAction}
+      <button class="pill full" onclick="closeProductDetails()">إغلاق</button>
+    </div>
+    ${canMask ? '<p class="product-modal-note">وضع الخصوصية مفعّل، لذلك تم إخفاء الاسم والوصف حتى تضغط عرض التفاصيل.</p>' : ''}
+  `;
+
+  backdrop.classList.add('open');
 }
 
 function renderProducts() {
