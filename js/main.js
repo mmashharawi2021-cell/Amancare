@@ -18,6 +18,38 @@ function loadStylesheet(path) {
   document.head.appendChild(link);
 }
 
+function applyBrandCopy() {
+  const brandText = document.querySelector('.brand span:last-child');
+  const eyebrow = document.querySelector('.eyebrow');
+  const heroTitle = document.querySelector('.hero h1');
+  const heroLead = document.querySelector('.lead');
+  const firstHeroButton = document.querySelector('.hero-actions .primary');
+  const secondHeroButton = document.querySelector('.hero-actions .pill:not(.primary)');
+  const sectionTitle = document.querySelector('#products .section-head h2');
+  const sectionLead = document.querySelector('#products .section-head p');
+  const footer = document.querySelector('footer');
+
+  if (brandText) brandText.textContent = 'AmanCare';
+  if (eyebrow) eyebrow.textContent = 'Private. Personal. Protected.';
+  if (heroTitle) heroTitle.textContent = 'عناية شخصية بخصوصية كاملة.';
+  if (heroLead) heroLead.textContent = 'AmanCare مساحة هادئة لطلب منتجات العناية الشخصية بثقة، تغليف محترم، وتجربة مصممة لتشعرك أن الطلب خاص بك وحدك.';
+  if (firstHeroButton) firstHeroButton.textContent = 'تصفح بعناية';
+  if (secondHeroButton) secondHeroButton.textContent = 'عرض السلة';
+  if (sectionTitle) sectionTitle.textContent = 'مختارات AmanCare';
+  if (sectionLead) sectionLead.textContent = 'منتجات منظمة بهدوء، مع وضع خصوصية يحافظ على راحتك أثناء التصفح.';
+  if (footer) footer.textContent = 'AmanCare / أمان كير © 2026 — Wellness that feels like it’s just for you.';
+
+  const trustTitles = document.querySelectorAll('.trust-box h3');
+  const trustTexts = document.querySelectorAll('.trust-box p');
+
+  if (trustTitles[0]) trustTitles[0].textContent = 'خصوصية أولاً';
+  if (trustTexts[0]) trustTexts[0].textContent = 'تصفح المنتجات الحساسة بوضع خصوصية افتراضي يخفي الصور والأسماء عند الحاجة.';
+  if (trustTitles[1]) trustTitles[1].textContent = 'هوية دافئة وراقية';
+  if (trustTexts[1]) trustTexts[1].textContent = 'ألوان عاجية وذهبية هادئة بدل الإحساس الطبي البارد، لتجربة أكثر راحة وثقة.';
+  if (trustTitles[2]) trustTitles[2].textContent = 'طلب سريع ومحترم';
+  if (trustTexts[2]) trustTexts[2].textContent = 'أضف المنتج للسلة وأرسل الطلب عبر واتساب برسالة منظمة وواضحة.';
+}
+
 function injectPrivacyControls() {
   const actions = document.querySelector('.actions');
   if (!actions || document.getElementById('privacyToggle')) return;
@@ -96,10 +128,12 @@ function renderAll() {
 function bootApp() {
   const savedTheme = localStorage.getItem(AMANCARE_CONFIG.storage.theme) || AMANCARE_CONFIG.defaultTheme;
   setTheme(savedTheme);
+  loadStylesheet('css/brand.css');
   loadStylesheet('css/privacy.css');
   loadStylesheet('css/product-card.css');
   loadStylesheet('css/product-modal.css');
   loadStylesheet('css/admin-upgrade.css');
+  applyBrandCopy();
   injectPrivacyControls();
   renderAll();
 }
