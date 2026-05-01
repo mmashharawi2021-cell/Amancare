@@ -98,6 +98,7 @@ function bootApp() {
   setTheme(savedTheme);
   loadStylesheet('css/privacy.css');
   loadStylesheet('css/product-card.css');
+  loadStylesheet('css/product-modal.css');
   injectPrivacyControls();
   renderAll();
 }
