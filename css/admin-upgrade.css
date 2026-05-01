@@ -1,0 +1,39 @@
+.upgraded-admin-product {
+  align-items: flex-start;
+}
+
+.upgraded-admin-product small {
+  display: inline-block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.admin-actions .pill,
+.admin-actions .danger {
+  padding: 9px 11px;
+  font-size: 13px;
+}
+
+@media (max-width: 620px) {
+  .upgraded-admin-product {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-actions {
+    width: 100%;
+  }
+
+  .admin-actions .pill,
+  .admin-actions .danger {
+    flex: 1;
+  }
+}
