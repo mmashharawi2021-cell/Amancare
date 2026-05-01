@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#dff6ff" />
+  <title>AmanCare | صيدلية إلكترونية</title>
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --surface:rgba(255,255,255,.78);
+      --surface-strong:#ffffff;
+      --text:#102033;
+      --muted:#64748b;
+      --primary:#38bdf8;
+      --primary-dark:#0369a1;
+      --secondary:#2dd4bf;
+      --success:#22c55e;
+      --offer:#f59e0b;
+      --danger:#ef4444;
+      --ring:rgba(56,189,248,.28);
+      --shadow:0 24px 70px rgba(14,116,144,.16);
+      --radius:30px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Tajawal","Segoe UI",system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(56,189,248,.24), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(45,212,191,.24), transparent 30%),
+        linear-gradient(135deg,#f8fdff,#edf8f7 55%,#fffaf0);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    body[data-theme="green"]{--primary:#34d399;--primary-dark:#047857;--secondary:#38bdf8;--ring:rgba(52,211,153,.28)}
+    body[data-theme="purple"]{--primary:#a78bfa;--primary-dark:#6d28d9;--secondary:#38bdf8;--ring:rgba(167,139,250,.28)}
+    body[data-theme="blue"]{--primary:#38bdf8;--primary-dark:#0369a1;--secondary:#2dd4bf;--ring:rgba(56,189,248,.28)}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer;border:0}
+    .container{width:min(1180px,calc(100% - 32px));margin:auto}
+    .nav{
+      position:sticky;top:14px;z-index:50;margin:14px auto 0;
+      width:min(1180px,calc(100% - 32px));
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:12px 14px;border:1px solid rgba(14,165,233,.18);
+      background:rgba(255,255,255,.72);backdrop-filter:blur(22px);
+      border-radius:999px;box-shadow:0 18px 50px rgba(15,23,42,.08)
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900}
+    .logo{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--primary-dark),var(--secondary));box-shadow:0 12px 28px var(--ring)}
+    .links{display:flex;gap:18px;color:var(--muted);font-weight:700;font-size:14px}
+    .actions{display:flex;align-items:center;gap:8px}
+    .pill{padding:11px 16px;border-radius:999px;background:var(--surface-strong);box-shadow:0 10px 24px rgba(15,23,42,.08);font-weight:800;color:var(--primary-dark)}
+    .primary{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;box-shadow:0 16px 35px var(--ring)}
+    .theme-dot{width:26px;height:26px;border-radius:50%;border:3px solid #fff;box-shadow:0 8px 20px rgba(15,23,42,.12)}
+    .hero{padding:42px 0 34px}
+    .hero-card{position:relative;overflow:hidden;min-height:610px;border-radius:46px;background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(225,249,255,.78));box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.9);padding:44px;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center}
+    .hero-card:before{content:"";position:absolute;inset:auto -12% -35% auto;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,var(--primary),transparent 62%);opacity:.26;filter:blur(4px)}
+    .hero-card:after{content:"";position:absolute;inset:-20% auto auto -10%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--secondary),transparent 64%);opacity:.24}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.78);color:var(--primary-dark);font-weight:900;border:1px solid rgba(14,165,233,.16)}
+    h1{font-size:clamp(42px,7vw,88px);line-height:.95;margin:18px 0 18px;letter-spacing:-2px}
+    .lead{font-size:clamp(17px,2vw,22px);line-height:1.85;color:var(--muted);max-width:650px;margin:0 0 28px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.stat{padding:18px;border-radius:24px;background:rgba(255,255,255,.7);border:1px solid rgba(148,163,184,.18)}.stat b{display:block;font-size:26px;color:var(--primary-dark)}.stat span{font-size:13px;color:var(--muted);font-weight:700}
+    .product-stage{position:relative;display:grid;place-items:center;min-height:500px}.orbit{position:absolute;width:min(430px,80vw);height:min(430px,80vw);border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));filter:drop-shadow(0 34px 80px var(--ring));animation:pulse 5s ease-in-out infinite}.product-box{position:relative;width:min(340px,80vw);min-height:420px;border-radius:44px;background:linear-gradient(180deg,#fff,#f5fbff);box-shadow:0 35px 80px rgba(3,105,161,.2);border:1px solid rgba(255,255,255,.9);display:grid;place-items:center;transform:rotate(-7deg);animation:float 5s ease-in-out infinite}.product-box:before{content:"Aman\A Care";white-space:pre;text-align:center;font-size:54px;font-weight:950;color:var(--primary-dark);line-height:.9}.product-box:after{content:"+";position:absolute;top:28px;left:32px;width:62px;height:62px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:42px;font-weight:900}.badge{position:absolute;padding:14px 18px;border-radius:22px;background:rgba(255,255,255,.78);backdrop-filter:blur(18px);box-shadow:0 20px 50px rgba(15,23,42,.1);font-weight:900}.badge.one{top:44px;right:0}.badge.two{bottom:54px;left:0}.badge.three{bottom:12px;right:34px;color:#92400e;background:rgba(255,251,235,.9)}
+    @keyframes float{50%{transform:translateY(-16px) rotate(-4deg)}}@keyframes pulse{50%{transform:scale(1.04);opacity:.92}}
+    section{padding:44px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:22px}.section-head h2{font-size:clamp(28px,4vw,48px);margin:0}.section-head p{color:var(--muted);margin:8px 0 0;line-height:1.7}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.72);color:var(--muted);font-weight:800}.filter.active{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{position:relative;overflow:hidden;border-radius:30px;background:var(--surface);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.88);box-shadow:0 18px 44px rgba(15,23,42,.08);padding:18px;transition:.25s}.card:hover{transform:translateY(-6px);box-shadow:0 28px 65px rgba(15,23,42,.12)}.thumb{height:180px;border-radius:24px;background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(45,212,191,.2));display:grid;place-items:center;margin-bottom:14px;position:relative}.thumb span{font-size:58px}.offer{position:absolute;top:14px;right:14px;background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}.card h3{margin:0 0 8px;font-size:19px}.desc{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.6}.price{display:flex;align-items:center;justify-content:space-between;gap:8px}.price b{font-size:22px;color:var(--primary-dark)}.mini{padding:9px 12px;border-radius:16px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;font-weight:900}.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.trust-box{padding:24px;border-radius:30px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.86);box-shadow:0 18px 44px rgba(15,23,42,.06)}.trust-box h3{margin:0 0 8px}.trust-box p{margin:0;color:var(--muted);line-height:1.7}.cta{border-radius:38px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:34px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 30px 70px var(--ring)}.cta h2{margin:0 0 8px;font-size:36px}.cta p{margin:0;opacity:.9;line-height:1.7}.cta .pill{color:var(--primary-dark)}
+    .drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:rgba(255,255,255,.88);backdrop-filter:blur(24px);z-index:90;box-shadow:-30px 0 70px rgba(15,23,42,.16);transform:translateX(110%);transition:.28s;padding:22px;display:flex;flex-direction:column}.drawer.open{transform:translateX(0)}.drawer-head{display:flex;align-items:center;justify-content:space-between}.cart-items{display:grid;gap:12px;margin:18px 0;overflow:auto}.cart-item{display:grid;grid-template-columns:1fr auto;gap:8px;padding:14px;border-radius:20px;background:#fff;border:1px solid #e2e8f0}.qty{display:flex;align-items:center;gap:8px}.qty button{width:28px;height:28px;border-radius:10px;background:#eef6ff;color:var(--primary-dark);font-weight:900}.total{margin-top:auto;padding-top:16px;border-top:1px solid #e2e8f0}.total-row{display:flex;justify-content:space-between;font-size:22px;font-weight:950;margin-bottom:12px}.whatsapp{width:100%;padding:14px;border-radius:18px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-weight:950}
+    .modal{position:fixed;inset:0;background:rgba(15,23,42,.42);backdrop-filter:blur(10px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.admin{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:30px;padding:22px;box-shadow:0 40px 100px rgba(15,23,42,.24)}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px}.field label{font-weight:900;font-size:13px;color:var(--muted)}.field input,.field textarea,.field select{width:100%;padding:12px 14px;border-radius:16px;border:1px solid #dbeafe;background:#f8fafc;color:var(--text)}.field.full{grid-column:1/-1}.admin-products{display:grid;gap:10px;margin-top:14px}.admin-product{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-radius:18px;background:#f8fafc}.danger{background:#fee2e2;color:#991b1b;padding:9px 12px;border-radius:14px;font-weight:900}
+    .toast{position:fixed;bottom:22px;left:22px;background:#0f172a;color:#fff;padding:13px 16px;border-radius:18px;box-shadow:0 18px 40px rgba(15,23,42,.22);transform:translateY(120px);transition:.25s;z-index:120}.toast.show{transform:translateY(0)}
+    footer{padding:34px 0;color:var(--muted);text-align:center}.hide{display:none!important}
+    @media(max-width:900px){.links{display:none}.hero-card{grid-template-columns:1fr;padding:28px;min-height:auto}.product-stage{min-height:420px}.grid{grid-template-columns:repeat(2,1fr)}.trust,.stats{grid-template-columns:1fr}.section-head,.cta{align-items:start;flex-direction:column}.admin-grid{grid-template-columns:1fr}}
+    @media(max-width:540px){.container,.nav{width:min(100% - 20px,1180px)}.nav{top:8px}.brand span:last-child{display:none}.hero{padding-top:20px}.hero-card{border-radius:32px;padding:22px}h1{font-size:44px}.grid{grid-template-columns:1fr}.thumb{height:150px}.product-box{width:260px;min-height:330px}.product-box:before{font-size:42px}.orbit{width:310px;height:310px}.badge{font-size:12px}.pill{padding:10px 12px}.actions{gap:6px}}
+  </style>
+</head>
+<body data-theme="blue">
+  <nav class="nav">
+    <a class="brand" href="#top"><span class="logo">+</span><span>AmanCare</span></a>
+    <div class="links"><a href="#products">المنتجات</a><a href="#trust">الثقة والجودة</a><a href="#order">طريقة الطلب</a></div>
+    <div class="actions"><button class="theme-dot" style="background:#38bdf8" onclick="setTheme('blue')" aria-label="أزرق"></button><button class="theme-dot" style="background:#34d399" onclick="setTheme('green')" aria-label="أخضر"></button><button class="theme-dot" style="background:#a78bfa" onclick="setTheme('purple')" aria-label="بنفسجي"></button><button class="pill" onclick="openAdmin()">الإدارة</button><button class="pill primary" onclick="toggleCart()">السلة <span id="cartCount">0</span></button></div>
+  </nav>
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">صيدلية إلكترونية موثوقة</span>
+          <h1>عناية صحية نظيفة، واضحة، وسريعة.</h1>
+          <p class="lead">واجهة طبية هادئة مستوحاة من أسلوب الفيديو: منتج واضح في المركز، عمق زجاجي، ألوان صحية، وتجربة طلب بسيطة عبر واتساب.</p>
+          <div class="hero-actions"><a class="pill primary" href="#products">تصفح المنتجات</a><button class="pill" onclick="toggleCart()">عرض السلة</button></div>
+          <div class="stats"><div class="stat"><b>24/7</b><span>استقبال الطلبات</span></div><div class="stat"><b>+35</b><span>منتج قابل للإدارة</span></div><div class="stat"><b>RTL</b><span>واجهة عربية كاملة</span></div></div>
+        </div>
+        <div class="product-stage" aria-hidden="true">
+          <div class="orbit"></div><div class="product-box"></div>
+          <div class="badge one">نظافة ووضوح</div><div class="badge two">ثقة طبية</div><div class="badge three">عروض محدودة</div>
+        </div>
+      </div>
+    </section>
+    <section id="products" class="container">
+      <div class="section-head"><div><h2>منتجات مختارة</h2><p>ألوان هادئة، كروت واضحة، وإجراء شراء مباشر بدون تشتيت.</p></div><div class="filters" id="filters"></div></div>
+      <div class="grid" id="productGrid"></div>
+    </section>
+    <section id="trust" class="container">
+      <div class="trust"><div class="trust-box"><h3>تصميم طبي مريح</h3><p>الأبيض والأزرق الفاتح يعطيان إحساس النظافة والثقة ويجعلان القراءة أسهل.</p></div><div class="trust-box"><h3>ألوان تمييز محسوبة</h3><p>الأخضر للصحة والثقة، والبرتقالي للعروض فقط حتى لا تصبح الواجهة مزعجة.</p></div><div class="trust-box"><h3>إدارة محلية سريعة</h3><p>يمكن إضافة وتعديل المنتجات من لوحة تحكم بسيطة تحفظ البيانات داخل المتصفح.</p></div></div>
+    </section>
+    <section id="order" class="container"><div class="cta"><div><h2>اطلب منتجاتك عبر واتساب</h2><p>أضف المنتجات إلى السلة، راجع الإجمالي، ثم أرسل الطلب مباشرة برسالة منظمة.</p></div><button class="pill" onclick="toggleCart()">افتح السلة الآن</button></div></section>
+  </main>
+  <aside class="drawer" id="cartDrawer"><div class="drawer-head"><h2>سلة الطلب</h2><button class="pill" onclick="toggleCart(false)">إغلاق</button></div><div class="cart-items" id="cartItems"></div><div class="total"><div class="total-row"><span>الإجمالي</span><span id="cartTotal">0 ₪</span></div><button class="whatsapp" onclick="sendWhatsApp()">إرسال الطلب واتساب</button></div></aside>
+  <div class="modal" id="adminModal"><div class="admin"><div class="drawer-head"><h2>لوحة إدارة AmanCare</h2><button class="pill" onclick="closeAdmin()">إغلاق</button></div><div id="loginBox"><p style="color:var(--muted);line-height:1.7">أدخل كلمة المرور الافتراضية: <b>admin12345</b></p><div class="field"><label>كلمة المرور</label><input id="adminPassword" type="password" placeholder="كلمة المرور"></div><br><button class="pill primary" onclick="loginAdmin()">دخول</button></div><div id="adminPanel" class="hide"><div class="admin-grid"><div class="field"><label>اسم المنتج</label><input id="pName" placeholder="مثال: فيتامين C"></div><div class="field"><label>السعر</label><input id="pPrice" type="number" placeholder="25"></div><div class="field"><label>التصنيف</label><select id="pCategory"><option>العناية</option><option>الصحة</option><option>التجميل</option><option>العروض</option></select></div><div class="field"><label>الأيقونة</label><input id="pIcon" placeholder="💊"></div><div class="field full"><label>الوصف</label><textarea id="pDesc" rows="3" placeholder="وصف قصير للمنتج"></textarea></div></div><br><button class="pill primary" onclick="saveProduct()">إضافة المنتج</button><button class="pill" onclick="resetProducts()">استعادة المنتجات الافتراضية</button><div class="admin-products" id="adminProducts"></div></div></div></div>
+  <div class="toast" id="toast"></div>
+  <footer class="container">AmanCare © 2026 — نسخة صيدلية إلكترونية طبية بأسلوب Hero Premium.</footer>
+  <script>
+    const DEFAULT_PRODUCTS=[
+      {id:1,name:'فيتامين C',price:25,category:'الصحة',icon:'🍊',desc:'دعم المناعة والطاقة اليومية.',offer:true},
+      {id:2,name:'كريم ترطيب طبي',price:32,category:'العناية',icon:'🧴',desc:'ترطيب لطيف للبشرة الجافة والحساسة.'},
+      {id:3,name:'واقي شمس',price:45,category:'العناية',icon:'☀️',desc:'حماية يومية خفيفة ومناسبة للخروج.'},
+      {id:4,name:'جهاز قياس حرارة',price:55,category:'الصحة',icon:'🌡️',desc:'قياس سريع ومناسب للاستخدام المنزلي.'},
+      {id:5,name:'شامبو طبي',price:28,category:'التجميل',icon:'🫧',desc:'عناية نظيفة بفروة الرأس والشعر.'},
+      {id:6,name:'مطهر يدين',price:12,category:'العناية',icon:'🧼',desc:'تعقيم سريع بحجم مناسب للحقيبة.',offer:true},
+      {id:7,name:'كولاجين عناية',price:65,category:'التجميل',icon:'✨',desc:'منتج جمالي بنمط عرض فاخر.'},
+      {id:8,name:'باقة العناية',price:89,category:'العروض',icon:'🎁',desc:'مجموعة منتجات بسعر عرض محدود.',offer:true}
+    ];
+    const state={products:load('amancare_products',DEFAULT_PRODUCTS),cart:load('amancare_cart',[]),filter:'الكل'};
+    function load(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch{return fallback}}
+    function save(key,value){localStorage.setItem(key,JSON.stringify(value))}
+    function money(v){return Number(v||0).toLocaleString('ar')+' ₪'}
+    function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+    function setTheme(t){document.body.dataset.theme=t;localStorage.setItem('amancare_theme',t)}
+    setTheme(localStorage.getItem('amancare_theme')||'blue');
+    function categories(){return ['الكل',...new Set(state.products.map(p=>p.category))]}
+    function renderFilters(){document.getElementById('filters').innerHTML=categories().map(c=>`<button class="filter ${state.filter===c?'active':''}" onclick="setFilter('${c}')">${c}</button>`).join('')}
+    function setFilter(c){state.filter=c;renderProducts();renderFilters()}
+    function renderProducts(){const items=state.filter==='الكل'?state.products:state.products.filter(p=>p.category===state.filter);document.getElementById('productGrid').innerHTML=items.map(p=>`<article class="card"><div class="thumb">${p.offer?'<b class="offer">عرض</b>':''}<span>${p.icon||'💊'}</span></div><h3>${p.name}</h3><p class="desc">${p.desc}</p><div class="price"><b>${money(p.price)}</b><button class="mini" onclick="addToCart(${p.id})">أضف</button></div></article>`).join('')}
+    function addToCart(id){const item=state.cart.find(i=>i.id===id);if(item)item.qty++;else{const p=state.products.find(x=>x.id===id);state.cart.push({...p,qty:1})}save('amancare_cart',state.cart);renderCart();toast('تمت الإضافة إلى السلة')}
+    function changeQty(id,delta){const item=state.cart.find(i=>i.id===id);if(!item)return;item.qty+=delta;if(item.qty<=0)state.cart=state.cart.filter(i=>i.id!==id);save('amancare_cart',state.cart);renderCart()}
+    function renderCart(){const box=document.getElementById('cartItems');document.getElementById('cartCount').textContent=state.cart.reduce((a,b)=>a+b.qty,0);box.innerHTML=state.cart.length?state.cart.map(i=>`<div class="cart-item"><div><b>${i.name}</b><br><small>${money(i.price)} × ${i.qty}</small></div><div class="qty"><button onclick="changeQty(${i.id},-1)">-</button><b>${i.qty}</b><button onclick="changeQty(${i.id},1)">+</button></div></div>`).join(''):'<p style="color:var(--muted)">السلة فارغة.</p>';document.getElementById('cartTotal').textContent=money(state.cart.reduce((a,b)=>a+b.price*b.qty,0))}
+    function toggleCart(force){document.getElementById('cartDrawer').classList.toggle('open',force)}
+    function sendWhatsApp(){if(!state.cart.length){toast('السلة فارغة');return}const phone='970000000000';const total=state.cart.reduce((a,b)=>a+b.price*b.qty,0);const lines=['طلب جديد من AmanCare','',...state.cart.map(i=>`- ${i.name} | الكمية: ${i.qty} | السعر: ${money(i.price*i.qty)}`),'',`الإجمالي: ${money(total)}`];window.open(`https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank')}
+    function openAdmin(){document.getElementById('adminModal').classList.add('open')}
+    function closeAdmin(){document.getElementById('adminModal').classList.remove('open')}
+    function loginAdmin(){if(document.getElementById('adminPassword').value==='admin12345'){document.getElementById('loginBox').classList.add('hide');document.getElementById('adminPanel').classList.remove('hide');renderAdmin();toast('تم فتح لوحة الإدارة')}else toast('كلمة المرور غير صحيحة')}
+    function saveProduct(){const p={id:Date.now(),name:pName.value.trim(),price:Number(pPrice.value),category:pCategory.value,icon:pIcon.value.trim()||'💊',desc:pDesc.value.trim()||'منتج صيدلي موثوق.'};if(!p.name||!p.price){toast('أدخل اسم المنتج والسعر');return}state.products.unshift(p);save('amancare_products',state.products);pName.value=pPrice.value=pIcon.value=pDesc.value='';renderAll();renderAdmin();toast('تم حفظ المنتج')}
+    function deleteProduct(id){state.products=state.products.filter(p=>p.id!==id);state.cart=state.cart.filter(p=>p.id!==id);save('amancare_products',state.products);save('amancare_cart',state.cart);renderAll();renderAdmin()}
+    function resetProducts(){if(confirm('استعادة المنتجات الافتراضية؟')){state.products=[...DEFAULT_PRODUCTS];state.cart=[];save('amancare_products',state.products);save('amancare_cart',state.cart);renderAll();renderAdmin()}}
+    function renderAdmin(){document.getElementById('adminProducts').innerHTML=state.products.map(p=>`<div class="admin-product"><span>${p.icon} <b>${p.name}</b> — ${money(p.price)}</span><button class="danger" onclick="deleteProduct(${p.id})">حذف</button></div>`).join('')}
+    function renderAll(){renderFilters();renderProducts();renderCart()}
+    renderAll();
+  </script>
+</body>
+</html>
