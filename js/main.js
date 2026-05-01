@@ -1,7 +1,8 @@
 const appState = {
   products: readStorage(AMANCARE_CONFIG.storage.products, DEFAULT_PRODUCTS),
   cart: readStorage(AMANCARE_CONFIG.storage.cart, []),
-  filter: 'all'
+  filter: 'all',
+  search: ''
 };
 
 function renderAll() {
