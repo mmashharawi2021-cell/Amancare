@@ -26,7 +26,7 @@
 .privacy-on .card.is-sensitive .sensitive-image,
 .privacy-on .card.is-sensitive .sensitive-title,
 .privacy-on .card.is-sensitive .sensitive-desc {
-  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  transition: filter 0.22s ease, opacity 0.22s ease, transform 0.22s ease, color 0.22s ease;
 }
 
 .privacy-on .card.is-sensitive:not(:hover):not(.temporary-reveal) .sensitive-image {
@@ -54,15 +54,32 @@
   font-weight: 900;
   text-align: center;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  pointer-events: none;
+}
+
+.privacy-on .card.is-sensitive.temporary-reveal .sensitive-image {
+  filter: none !important;
+  transform: none !important;
+}
+
+.privacy-on .card.is-sensitive.temporary-reveal .sensitive-title,
+.privacy-on .card.is-sensitive.temporary-reveal .sensitive-desc {
+  color: inherit !important;
+  text-shadow: none !important;
+  user-select: auto !important;
+}
+
+.privacy-on .card.is-sensitive.temporary-reveal::after {
+  display: none !important;
 }
 
 .reveal-btn {
   display: none;
   width: 100%;
   margin-top: 10px;
-  padding: 9px 12px;
+  padding: 10px 12px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.9);
   color: var(--primary-dark);
   border: 1px solid rgba(14, 165, 233, 0.18);
   font-weight: 900;
@@ -77,25 +94,15 @@
     display: block;
   }
 
-  .privacy-on .card.is-sensitive:hover .sensitive-image {
+  .privacy-on .card.is-sensitive .sensitive-image {
     filter: blur(14px);
+    transform: scale(1.02);
   }
 
-  .privacy-on .card.is-sensitive:hover .sensitive-title,
-  .privacy-on .card.is-sensitive:hover .sensitive-desc {
+  .privacy-on .card.is-sensitive .sensitive-title,
+  .privacy-on .card.is-sensitive .sensitive-desc {
     color: transparent;
     text-shadow: 0 0 12px rgba(15, 23, 42, 0.42);
-  }
-
-  .privacy-on .card.is-sensitive.temporary-reveal .sensitive-image {
-    filter: none;
-    transform: none;
-  }
-
-  .privacy-on .card.is-sensitive.temporary-reveal .sensitive-title,
-  .privacy-on .card.is-sensitive.temporary-reveal .sensitive-desc {
-    color: inherit;
-    text-shadow: none;
   }
 }
 
@@ -103,6 +110,7 @@
   .privacy-actions {
     width: 100%;
     justify-content: space-between;
+    order: 4;
   }
 
   .privacy-toggle,
