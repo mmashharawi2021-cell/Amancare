@@ -55,18 +55,26 @@ function renderProducts() {
     return;
   }
 
-  gridElement.innerHTML = visibleProducts.map((product) => `
-    <article class="card">
-      <div class="thumb">
-        ${product.offer ? '<b class="offer">عرض</b>' : ''}
-        <span>${product.icon || '💊'}</span>
-      </div>
-      <h3>${product.name}</h3>
-      <p class="desc">${product.desc}</p>
-      <div class="price">
-        <b>${money(product.price)}</b>
-        <button class="mini" onclick="addToCart(${product.id})">أضف</button>
-      </div>
-    </article>
-  `).join('');
+  gridElement.innerHTML = visibleProducts.map((product) => {
+    const sensitiveClass = product.isSensitive ? 'is-sensitive' : '';
+    const revealButton = product.isSensitive
+      ? `<button class="reveal-btn" onclick="revealProductTemporarily(${product.id})">عرض المنتج</button>`
+      : '';
+
+    return `
+      <article class="card ${sensitiveClass}" data-product-id="${product.id}">
+        <div class="thumb sensitive-image">
+          ${product.offer ? '<b class="offer">عرض</b>' : ''}
+          <span>${product.icon || '💊'}</span>
+        </div>
+        <h3 class="sensitive-title sensitive-content">${product.name}</h3>
+        <p class="desc sensitive-desc sensitive-content">${product.desc}</p>
+        <div class="price">
+          <b>${money(product.price)}</b>
+          <button class="mini" onclick="addToCart(${product.id})">أضف</button>
+        </div>
+        ${revealButton}
+      </article>
+    `;
+  }).join('');
 }
