@@ -5,7 +5,7 @@ const AMANCARE_CONFIG = {
     theme: 'amancare_theme'
   },
   adminPassword: 'admin12345',
-  whatsappPhone: '970000000000',
+  whatsappPhone: ['970', '568876261'].join(''),
   currency: '₪',
   defaultTheme: 'blue'
 };
