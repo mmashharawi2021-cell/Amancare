@@ -23,6 +23,11 @@ function setFilter(category) {
   renderProducts();
 }
 
+function setSearch(value) {
+  appState.search = value.trim().toLowerCase();
+  renderProducts();
+}
+
 function renderFilters() {
   const filtersElement = document.getElementById('filters');
 
@@ -32,11 +37,23 @@ function renderFilters() {
   }).join('');
 }
 
+function getVisibleProducts() {
+  return appState.products.filter((product) => {
+    const matchesCategory = appState.filter === 'all' || product.category === appState.filter;
+    const searchableText = `${product.name} ${product.desc} ${product.categoryLabel}`.toLowerCase();
+    const matchesSearch = !appState.search || searchableText.includes(appState.search);
+    return matchesCategory && matchesSearch;
+  });
+}
+
 function renderProducts() {
   const gridElement = document.getElementById('productGrid');
-  const visibleProducts = appState.filter === 'all'
-    ? appState.products
-    : appState.products.filter((product) => product.category === appState.filter);
+  const visibleProducts = getVisibleProducts();
+
+  if (!visibleProducts.length) {
+    gridElement.innerHTML = '<div class="empty-products">لا توجد منتجات مطابقة للبحث الحالي.</div>';
+    return;
+  }
 
   gridElement.innerHTML = visibleProducts.map((product) => `
     <article class="card">
