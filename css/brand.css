@@ -1,0 +1,185 @@
+/* AmanCare Brand Refresh: warm, private, personal, protected. */
+:root {
+  --champagne-gold: #c99a3d;
+  --creamy-ivory: #f5efe4;
+  --warm-sand: #d9bd91;
+  --muted-clay: #b99a8b;
+  --espresso-charcoal: #3d342d;
+  --soft-cream: #fffaf2;
+  --primary: var(--champagne-gold);
+  --primary-dark: #8c6426;
+  --secondary: var(--muted-clay);
+  --text: var(--espresso-charcoal);
+  --muted: #7d6f64;
+  --ring: rgba(201, 154, 61, 0.26);
+  --shadow: 0 24px 70px rgba(61, 52, 45, 0.12);
+}
+
+body {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(201, 154, 61, 0.18), transparent 32%),
+    radial-gradient(circle at 86% 14%, rgba(185, 154, 139, 0.20), transparent 30%),
+    linear-gradient(135deg, #fffaf2, #f5efe4 52%, #ead8bf);
+}
+
+body[data-theme="green"],
+body[data-theme="purple"],
+body[data-theme="blue"] {
+  --primary: var(--champagne-gold);
+  --primary-dark: #8c6426;
+  --secondary: var(--muted-clay);
+  --ring: rgba(201, 154, 61, 0.26);
+}
+
+.nav {
+  border-color: rgba(201, 154, 61, 0.20);
+  background: rgba(255, 250, 242, 0.78);
+}
+
+.logo {
+  position: relative;
+  overflow: hidden;
+  color: transparent;
+  background: linear-gradient(135deg, #c99a3d, #b99a8b);
+}
+
+.logo::before {
+  content: "♥";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fffaf2;
+  font-size: 22px;
+  transform: rotate(-12deg);
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  width: 15px;
+  height: 9px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(255, 250, 242, 0.92);
+  transform: rotate(-25deg);
+}
+
+.brand span:last-child {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  letter-spacing: 0.2px;
+}
+
+.theme-dot {
+  display: none;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, rgba(255, 250, 242, 0.94), rgba(245, 239, 228, 0.82));
+  border-color: rgba(255, 250, 242, 0.95);
+}
+
+.hero-card::before {
+  background: radial-gradient(circle, rgba(201, 154, 61, 0.9), transparent 62%);
+  opacity: 0.22;
+}
+
+.hero-card::after {
+  background: radial-gradient(circle, rgba(185, 154, 139, 0.88), transparent 64%);
+  opacity: 0.22;
+}
+
+.eyebrow {
+  border-color: rgba(201, 154, 61, 0.22);
+  background: rgba(255, 250, 242, 0.82);
+  color: #8c6426;
+}
+
+h1 {
+  color: var(--espresso-charcoal);
+}
+
+.product-box {
+  background: linear-gradient(180deg, #fffaf2, #f3e8d8);
+  box-shadow: 0 35px 80px rgba(140, 100, 38, 0.18);
+}
+
+.product-box::before {
+  content: "Aman\A Care";
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #3d342d;
+}
+
+.product-box::after {
+  content: "♥";
+  background: linear-gradient(135deg, #c99a3d, #b99a8b);
+  font-size: 30px;
+}
+
+.orbit {
+  background: linear-gradient(135deg, #c99a3d, #b99a8b);
+}
+
+.stat,
+.trust-box,
+.card,
+.product-toolbar,
+.search-box,
+.admin,
+.drawer {
+  background: rgba(255, 250, 242, 0.78);
+}
+
+.thumb {
+  background: linear-gradient(135deg, rgba(201, 154, 61, 0.16), rgba(185, 154, 139, 0.20));
+}
+
+.primary,
+.mini,
+.filter.active,
+.cta {
+  background: linear-gradient(135deg, #8c6426, #c99a3d);
+}
+
+.offer {
+  background: #fff7e6;
+  color: #8c6426;
+  border-color: rgba(201, 154, 61, 0.30);
+}
+
+.whatsapp {
+  background: linear-gradient(135deg, #2f6f4e, #4fa36f);
+}
+
+.cta {
+  color: #fffaf2;
+}
+
+.cta .pill {
+  color: #8c6426;
+}
+
+.badge.three {
+  background: rgba(255, 247, 230, 0.92);
+  color: #8c6426;
+}
+
+footer::before {
+  content: "Private. Personal. Protected.";
+  display: block;
+  margin-bottom: 8px;
+  color: #8c6426;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 540px) {
+  .brand span:last-child {
+    display: inline !important;
+    font-size: 18px;
+  }
+}
