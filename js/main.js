@@ -10,11 +10,11 @@ function savePrivacyMode(value) {
   localStorage.setItem(PRIVACY_KEY, String(value));
 }
 
-function loadPrivacyStyles() {
-  if (document.querySelector('link[href="css/privacy.css"]')) return;
+function loadStylesheet(path) {
+  if (document.querySelector(`link[href="${path}"]`)) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = 'css/privacy.css';
+  link.href = path;
   document.head.appendChild(link);
 }
 
@@ -96,7 +96,8 @@ function renderAll() {
 function bootApp() {
   const savedTheme = localStorage.getItem(AMANCARE_CONFIG.storage.theme) || AMANCARE_CONFIG.defaultTheme;
   setTheme(savedTheme);
-  loadPrivacyStyles();
+  loadStylesheet('css/privacy.css');
+  loadStylesheet('css/product-card.css');
   injectPrivacyControls();
   renderAll();
 }
