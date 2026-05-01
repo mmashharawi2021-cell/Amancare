@@ -2,13 +2,15 @@ const appState = {
   products: readStorage(AMANCARE_CONFIG.storage.products, DEFAULT_PRODUCTS),
   cart: readStorage(AMANCARE_CONFIG.storage.cart, []),
   filter: 'all',
-  search: ''
+  search: '',
+  privacyMode: readPrivacyMode()
 };
 
 function renderAll() {
   renderFilters();
   renderProducts();
   renderCart();
+  applyPrivacyMode();
 }
 
 function bootApp() {
