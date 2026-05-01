@@ -66,6 +66,15 @@
         </div>
         <div class="filters" id="filters" aria-label="تصنيفات المنتجات"></div>
       </div>
+
+      <div class="product-toolbar">
+        <label class="search-box" for="productSearch">
+          <span>بحث</span>
+          <input id="productSearch" type="search" placeholder="ابحث عن منتج، عناية، صحة..." oninput="setSearch(this.value)" />
+        </label>
+        <div class="toolbar-note">اكتب اسم المنتج أو التصنيف للوصول السريع.</div>
+      </div>
+
       <div class="grid" id="productGrid"></div>
     </section>
 
