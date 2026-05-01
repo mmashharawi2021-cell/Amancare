@@ -133,6 +133,7 @@ function bootApp() {
   loadStylesheet('css/product-card.css');
   loadStylesheet('css/product-modal.css');
   loadStylesheet('css/admin-upgrade.css');
+  loadStylesheet('css/mobile-fixes.css');
   applyBrandCopy();
   injectPrivacyControls();
   renderAll();
