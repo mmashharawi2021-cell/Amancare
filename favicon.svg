@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold" x1="88" y1="78" x2="402" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8D3A4"/>
+      <stop offset="0.38" stop-color="#C99A3D"/>
+      <stop offset="0.75" stop-color="#D8B78B"/>
+      <stop offset="1" stop-color="#B99A8B"/>
+    </linearGradient>
+    <linearGradient id="clay" x1="96" y1="300" x2="390" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E7D2C6"/>
+      <stop offset="0.55" stop-color="#B99A8B"/>
+      <stop offset="1" stop-color="#8E756B"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="274" y1="203" x2="430" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2DEB5"/>
+      <stop offset="0.42" stop-color="#D7B66E"/>
+      <stop offset="1" stop-color="#B88A35"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="#FFFAF2"/>
+  <path d="M237 109C183 65 107 94 101 168C95 244 178 300 253 334C205 291 156 250 154 187C152 125 203 105 237 148C252 113 286 91 326 102C374 115 397 163 385 210C407 173 398 126 365 98C322 62 263 71 237 109Z" fill="url(#gold)"/>
+  <path d="M253 334C183 320 128 281 95 224C98 292 143 351 217 379C275 401 337 394 395 433C364 373 315 346 253 334Z" fill="url(#clay)"/>
+  <path d="M273 333C284 260 337 213 428 181C415 260 366 323 273 333Z" fill="url(#leaf)"/>
+  <path d="M301 314C335 279 366 247 402 209" stroke="#FFF7EA" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+</svg>
