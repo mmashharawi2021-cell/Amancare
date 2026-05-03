@@ -1,0 +1,47 @@
+:root {
+  --champagne-gold: #c99a3d;
+  --creamy-ivory: #f5efe4;
+  --warm-sand: #d9bd91;
+  --muted-clay: #b99a8b;
+  --espresso-charcoal: #3d342d;
+  --primary: #c99a3d;
+  --primary-dark: #8c6426;
+  --secondary: #b99a8b;
+  --text: #3d342d;
+  --muted: #7d6f64;
+  --ring: rgba(201, 154, 61, 0.26);
+}
+
+body,
+body[data-theme="blue"],
+body[data-theme="green"],
+body[data-theme="purple"] {
+  --primary: #c99a3d !important;
+  --primary-dark: #8c6426 !important;
+  --secondary: #b99a8b !important;
+  --text: #3d342d !important;
+  --muted: #7d6f64 !important;
+  --ring: rgba(201, 154, 61, 0.26) !important;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(201, 154, 61, 0.18), transparent 32%),
+    radial-gradient(circle at 86% 14%, rgba(185, 154, 139, 0.20), transparent 30%),
+    linear-gradient(135deg, #fffaf2, #f5efe4 52%, #ead8bf) !important;
+}
+
+.primary,
+.mini,
+.filter.active,
+.cta {
+  background: linear-gradient(135deg, #8c6426, #c99a3d) !important;
+}
+
+.logo {
+  background: url('../assets/amancare-icon.svg') center / 92% 92% no-repeat !important;
+  box-shadow: none !important;
+  color: transparent !important;
+}
+
+.logo::before,
+.logo::after {
+  display: none !important;
+}
