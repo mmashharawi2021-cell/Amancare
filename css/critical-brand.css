@@ -1,0 +1,86 @@
+/* Critical first-paint brand styles: prevents old blue frame before JS loads. */
+:root {
+  --champagne-gold: #c99a3d;
+  --creamy-ivory: #f5efe4;
+  --warm-sand: #d9bd91;
+  --muted-clay: #b99a8b;
+  --espresso-charcoal: #3d342d;
+  --soft-cream: #fffaf2;
+  --bg: #fffaf2;
+  --surface: rgba(255, 250, 242, 0.78);
+  --surface-strong: #fffaf2;
+  --text: #3d342d;
+  --muted: #7d6f64;
+  --primary: #c99a3d;
+  --primary-dark: #8c6426;
+  --secondary: #b99a8b;
+  --ring: rgba(201, 154, 61, 0.26);
+  --shadow: 0 24px 70px rgba(61, 52, 45, 0.12);
+}
+
+body,
+body[data-theme="blue"],
+body[data-theme="green"],
+body[data-theme="purple"] {
+  --primary: #c99a3d;
+  --primary-dark: #8c6426;
+  --secondary: #b99a8b;
+  --ring: rgba(201, 154, 61, 0.26);
+  color: #3d342d;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(201, 154, 61, 0.18), transparent 32%),
+    radial-gradient(circle at 86% 14%, rgba(185, 154, 139, 0.20), transparent 30%),
+    linear-gradient(135deg, #fffaf2, #f5efe4 52%, #ead8bf) !important;
+}
+
+.nav,
+.hero-card,
+.card,
+.stat,
+.trust-box,
+.product-toolbar,
+.search-box,
+.drawer,
+.admin {
+  background: rgba(255, 250, 242, 0.78) !important;
+  border-color: rgba(201, 154, 61, 0.20) !important;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, rgba(255, 250, 242, 0.94), rgba(245, 239, 228, 0.82)) !important;
+}
+
+.hero-card::before {
+  background: radial-gradient(circle, rgba(201, 154, 61, 0.9), transparent 62%) !important;
+}
+
+.hero-card::after {
+  background: radial-gradient(circle, rgba(185, 154, 139, 0.88), transparent 64%) !important;
+}
+
+.thumb {
+  background: linear-gradient(135deg, rgba(201, 154, 61, 0.16), rgba(185, 154, 139, 0.20)) !important;
+}
+
+.primary,
+.mini,
+.filter.active,
+.cta {
+  background: linear-gradient(135deg, #8c6426, #c99a3d) !important;
+}
+
+.logo {
+  background: url('../assets/amancare-icon.svg') center / 92% 92% no-repeat !important;
+  color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.logo::before,
+.logo::after {
+  display: none !important;
+}
+
+.theme-dot {
+  display: none !important;
+}
