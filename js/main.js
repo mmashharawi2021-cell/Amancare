@@ -18,6 +18,14 @@ function loadStylesheet(path) {
   document.head.appendChild(link);
 }
 
+function loadScript(path) {
+  if (document.querySelector(`script[src="${path}"]`)) return;
+  const script = document.createElement('script');
+  script.src = path;
+  script.defer = true;
+  document.body.appendChild(script);
+}
+
 function applyBrandCopy() {
   const brandText = document.querySelector('.brand span:last-child');
   const eyebrow = document.querySelector('.eyebrow');
@@ -134,9 +142,11 @@ function bootApp() {
   loadStylesheet('css/product-modal.css');
   loadStylesheet('css/admin-upgrade.css');
   loadStylesheet('css/mobile-fixes.css');
+  loadStylesheet('css/animations.css');
   applyBrandCopy();
   injectPrivacyControls();
   renderAll();
+  loadScript('js/animations.js');
 }
 
 bootApp();
