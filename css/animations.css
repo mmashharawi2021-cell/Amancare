@@ -1,0 +1,180 @@
+/* Lightweight motion system for AmanCare */
+:root {
+  --motion-fast: 180ms;
+  --motion-medium: 320ms;
+  --motion-slow: 620ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav {
+  animation: fadeDown var(--motion-slow) var(--motion-ease) both;
+}
+
+.hero-card > div:first-child {
+  animation: fadeUp var(--motion-slow) var(--motion-ease) 120ms both;
+}
+
+.product-stage {
+  animation: softScale var(--motion-slow) var(--motion-ease) 220ms both;
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card.reveal-item {
+  transform: translateY(22px) scale(0.98);
+}
+
+.card.reveal-item.is-visible {
+  transform: translateY(0) scale(1);
+}
+
+.pill,
+.mini,
+.details-btn,
+.reveal-btn,
+.whatsapp,
+.filter,
+.product-modal-close,
+.privacy-toggle,
+.hide-now {
+  transition:
+    transform var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    opacity var(--motion-fast) ease,
+    background var(--motion-fast) ease;
+}
+
+.pill:hover,
+.mini:hover,
+.details-btn:hover,
+.reveal-btn:hover,
+.whatsapp:hover,
+.filter:hover,
+.privacy-toggle:hover,
+.hide-now:hover {
+  transform: translateY(-2px);
+}
+
+.pill:active,
+.mini:active,
+.details-btn:active,
+.reveal-btn:active,
+.whatsapp:active,
+.filter:active,
+.privacy-toggle:active,
+.hide-now:active {
+  transform: scale(0.98);
+}
+
+.drawer {
+  transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium) ease;
+}
+
+.product-modal-backdrop {
+  opacity: 0;
+  transition: opacity var(--motion-medium) ease;
+}
+
+.product-modal-backdrop.open {
+  opacity: 1;
+}
+
+.product-modal {
+  transform: translateY(18px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform var(--motion-medium) var(--motion-ease),
+    opacity var(--motion-medium) ease;
+}
+
+.product-modal-backdrop.open .product-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.toast {
+  transition: transform var(--motion-medium) var(--motion-ease), opacity var(--motion-medium) ease;
+  opacity: 0;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softScale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .reveal-item {
+    transform: translateY(16px);
+  }
+
+  .pill:hover,
+  .mini:hover,
+  .details-btn:hover,
+  .reveal-btn:hover,
+  .whatsapp:hover,
+  .filter:hover,
+  .privacy-toggle:hover,
+  .hide-now:hover {
+    transform: none;
+  }
+}
