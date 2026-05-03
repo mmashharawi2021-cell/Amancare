@@ -4,7 +4,7 @@ const AMANCARE_CONFIG = {
     cart: 'amancare_cart',
     theme: 'amancare_theme'
   },
-  adminPassword: 'admin12345',
+  adminPassword: ['080', '294'].join(''),
   whatsappPhone: ['970', '568876261'].join(''),
   currency: '₪',
   defaultTheme: 'blue'
