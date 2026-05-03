@@ -1,5 +1,5 @@
 function markRevealItems() {
-  const staticItems = document.querySelectorAll('section, .trust-box, .cta, .product-toolbar');
+  const staticItems = document.querySelectorAll('#products, #trust, #order, .trust-box, .cta, .product-toolbar');
   staticItems.forEach((item) => item.classList.add('reveal-item'));
 
   const cards = document.querySelectorAll('#productGrid .card');
@@ -9,9 +9,16 @@ function markRevealItems() {
   });
 }
 
+function isAlreadyInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+}
+
 function setupRevealObserver() {
+  const items = document.querySelectorAll('.reveal-item:not(.is-visible)');
+
   if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal-item').forEach((item) => item.classList.add('is-visible'));
+    items.forEach((item) => item.classList.add('is-visible'));
     return;
   }
 
@@ -23,11 +30,17 @@ function setupRevealObserver() {
       }
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.10,
+    rootMargin: '0px 0px -20px 0px'
   });
 
-  document.querySelectorAll('.reveal-item:not(.is-visible)').forEach((item) => observer.observe(item));
+  items.forEach((item) => {
+    if (isAlreadyInViewport(item)) {
+      item.classList.add('is-visible');
+      return;
+    }
+    observer.observe(item);
+  });
 }
 
 function refreshAnimations() {
