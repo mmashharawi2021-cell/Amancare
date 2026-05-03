@@ -38,24 +38,24 @@ function applyBrandCopy() {
   const footer = document.querySelector('footer');
 
   if (brandText) brandText.textContent = 'AmanCare';
-  if (eyebrow) eyebrow.textContent = 'Private. Personal. Protected.';
-  if (heroTitle) heroTitle.textContent = 'عناية شخصية بخصوصية كاملة.';
-  if (heroLead) heroLead.textContent = 'AmanCare مساحة هادئة لطلب منتجات العناية الشخصية بثقة، تغليف محترم، وتجربة مصممة لتشعرك أن الطلب خاص بك وحدك.';
-  if (firstHeroButton) firstHeroButton.textContent = 'تصفح بعناية';
-  if (secondHeroButton) secondHeroButton.textContent = 'عرض السلة';
-  if (sectionTitle) sectionTitle.textContent = 'مختارات AmanCare';
-  if (sectionLead) sectionLead.textContent = 'منتجات منظمة بهدوء، مع وضع خصوصية يحافظ على راحتك أثناء التصفح.';
-  if (footer) footer.textContent = 'AmanCare / أمان كير © 2026 — Wellness that feels like it’s just for you.';
+  if (eyebrow) eyebrow.textContent = 'خصوصية. عناية. ثقة.';
+  if (heroTitle) heroTitle.textContent = 'عناية شخصية بطلب خاص وآمن.';
+  if (heroLead) heroLead.textContent = 'AmanCare تجربة هادئة لطلب منتجات العناية الشخصية بخصوصية عالية، عرض منظم، وسهولة تواصل مباشرة دون إحراج.';
+  if (firstHeroButton) firstHeroButton.textContent = 'استعرض المنتجات';
+  if (secondHeroButton) secondHeroButton.textContent = 'راجع السلة';
+  if (sectionTitle) sectionTitle.textContent = 'منتجات مختارة بعناية';
+  if (sectionLead) sectionLead.textContent = 'تصفح بهدوء، استخدم وضع الخصوصية عند الحاجة، وأرسل طلبك مباشرة بطريقة واضحة ومحترمة.';
+  if (footer) footer.textContent = 'AmanCare / أمان كير © 2026 — عناية شخصية بتجربة أكثر خصوصية وراحة.';
 
   const trustTitles = document.querySelectorAll('.trust-box h3');
   const trustTexts = document.querySelectorAll('.trust-box p');
 
-  if (trustTitles[0]) trustTitles[0].textContent = 'خصوصية أولاً';
-  if (trustTexts[0]) trustTexts[0].textContent = 'تصفح المنتجات الحساسة بوضع خصوصية افتراضي يخفي الصور والأسماء عند الحاجة.';
-  if (trustTitles[1]) trustTitles[1].textContent = 'هوية دافئة وراقية';
-  if (trustTexts[1]) trustTexts[1].textContent = 'ألوان عاجية وذهبية هادئة بدل الإحساس الطبي البارد، لتجربة أكثر راحة وثقة.';
-  if (trustTitles[2]) trustTitles[2].textContent = 'طلب سريع ومحترم';
-  if (trustTexts[2]) trustTexts[2].textContent = 'أضف المنتج للسلة وأرسل الطلب عبر واتساب برسالة منظمة وواضحة.';
+  if (trustTitles[0]) trustTitles[0].textContent = 'خصوصية افتراضية';
+  if (trustTexts[0]) trustTexts[0].textContent = 'يمكنك تصفح المنتجات الحساسة بوضع خصوصية يخفي الصور والأسماء حتى تختار عرضها.';
+  if (trustTitles[1]) trustTitles[1].textContent = 'تجربة راقية وهادئة';
+  if (trustTexts[1]) trustTexts[1].textContent = 'ألوان دافئة وتفاصيل ناعمة تمنح الموقع طابعًا شخصيًا وآمنًا بدل الإحساس التجاري المباشر.';
+  if (trustTitles[2]) trustTitles[2].textContent = 'تواصل مباشر';
+  if (trustTexts[2]) trustTexts[2].textContent = 'أرسل طلبك أو استفسارك بسهولة عبر السلة أو المحادثة الداخلية داخل الموقع.';
 }
 
 function injectPrivacyControls() {
@@ -143,10 +143,12 @@ function bootApp() {
   loadStylesheet('css/admin-upgrade.css');
   loadStylesheet('css/mobile-fixes.css');
   loadStylesheet('css/animations.css');
+  loadStylesheet('css/chat-widget.css');
   applyBrandCopy();
   injectPrivacyControls();
   renderAll();
   loadScript('js/animations.js');
+  loadScript('js/chat-widget.js');
 }
 
 bootApp();
