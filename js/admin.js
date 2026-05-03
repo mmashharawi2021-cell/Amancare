@@ -2,6 +2,7 @@ let editingProductId = null;
 
 function openAdmin() {
   document.getElementById('adminModal').classList.add('open');
+  patchAdminAccessCopy();
   enhanceAdminPanel();
 }
 
@@ -9,11 +10,28 @@ function closeAdmin() {
   document.getElementById('adminModal').classList.remove('open');
 }
 
+function patchAdminAccessCopy() {
+  const note = document.querySelector('#loginBox .login-note');
+  const label = document.querySelector('label[for="adminPassword"]');
+  const input = document.getElementById('adminPassword');
+  const title = document.querySelector('#adminModal .drawer-head h2');
+
+  if (title) title.textContent = 'لوحة إدارة AmanCare';
+  if (note) note.textContent = 'أدخل رمز PIN للدخول إلى لوحة الإدارة.';
+  if (label) label.textContent = 'رمز PIN';
+  if (input) {
+    input.placeholder = 'أدخل رمز PIN';
+    input.inputMode = 'numeric';
+    input.autocomplete = 'one-time-code';
+  }
+}
+
 function loginAdmin() {
+  patchAdminAccessCopy();
   const password = document.getElementById('adminPassword').value;
 
   if (password !== AMANCARE_CONFIG.adminPassword) {
-    showToast('كلمة المرور غير صحيحة');
+    showToast('رمز PIN غير صحيح');
     return;
   }
 
@@ -25,12 +43,13 @@ function loginAdmin() {
 }
 
 function enhanceAdminPanel() {
+  patchAdminAccessCopy();
   const grid = document.querySelector('#adminPanel .admin-grid');
   if (!grid || document.getElementById('pOldPrice')) return;
 
   grid.insertAdjacentHTML('beforeend', `
     <div class="field">
-      <label for="pOldPrice">السعر القديم</label>
+      <label for="pOldPrice">السعر السابق</label>
       <input id="pOldPrice" type="number" placeholder="اختياري" />
     </div>
     <div class="field">
@@ -41,17 +60,17 @@ function enhanceAdminPanel() {
       </select>
     </div>
     <div class="field">
-      <label for="pOffer">هل عليه عرض؟</label>
+      <label for="pOffer">حالة العرض</label>
       <select id="pOffer">
-        <option value="false">لا</option>
-        <option value="true">نعم</option>
+        <option value="false">بدون عرض</option>
+        <option value="true">عرض خاص</option>
       </select>
     </div>
     <div class="field">
-      <label for="pSensitive">هل المنتج حساس؟</label>
+      <label for="pSensitive">خصوصية المنتج</label>
       <select id="pSensitive">
-        <option value="false">لا</option>
-        <option value="true">نعم</option>
+        <option value="false">منتج عادي</option>
+        <option value="true">منتج حساس</option>
       </select>
     </div>
   `);
@@ -75,7 +94,7 @@ function getProductFormData() {
     category: category.value,
     categoryLabel: category.selectedOptions[0].textContent,
     icon: document.getElementById('pIcon').value.trim() || '💊',
-    desc: document.getElementById('pDesc').value.trim() || 'منتج صيدلي موثوق.'
+    desc: document.getElementById('pDesc').value.trim() || 'منتج من AmanCare.'
   };
 }
 
@@ -142,7 +161,7 @@ function clearProductForm() {
 }
 
 function deleteProduct(productId) {
-  if (!confirm('حذف المنتج؟')) return;
+  if (!confirm('هل تريد حذف هذا المنتج؟')) return;
 
   appState.products = appState.products.filter((product) => product.id !== productId);
   appState.cart = appState.cart.filter((product) => product.id !== productId);
@@ -154,7 +173,7 @@ function deleteProduct(productId) {
 }
 
 function resetProducts() {
-  if (!confirm('استعادة المنتجات الافتراضية؟')) return;
+  if (!confirm('هل تريد استعادة المنتجات الافتراضية؟')) return;
 
   appState.products = [...DEFAULT_PRODUCTS];
   appState.cart = [];
