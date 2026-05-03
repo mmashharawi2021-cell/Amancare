@@ -37,39 +37,25 @@ body[data-theme="blue"] {
 }
 
 .logo {
-  position: relative;
-  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  overflow: visible;
   color: transparent;
-  background: linear-gradient(135deg, #c99a3d, #b99a8b);
+  background: url('../assets/amancare-icon.svg') center / 92% 92% no-repeat;
+  box-shadow: none;
+  border-radius: 0;
 }
 
-.logo::before {
-  content: "♥";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #fffaf2;
-  font-size: 22px;
-  transform: rotate(-12deg);
-}
-
+.logo::before,
 .logo::after {
-  content: "";
-  position: absolute;
-  right: 9px;
-  bottom: 9px;
-  width: 15px;
-  height: 9px;
-  border-radius: 100% 0 100% 0;
-  background: rgba(255, 250, 242, 0.92);
-  transform: rotate(-25deg);
+  display: none !important;
 }
 
 .brand span:last-child {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: 0.2px;
+  color: var(--espresso-charcoal);
 }
 
 .theme-dot {
@@ -101,6 +87,18 @@ h1 {
   color: var(--espresso-charcoal);
 }
 
+.product-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  width: min(220px, 52vw);
+  height: min(220px, 52vw);
+  top: 58px;
+  background: url('../assets/amancare-icon.svg') center / contain no-repeat;
+  filter: drop-shadow(0 22px 36px rgba(140, 100, 38, 0.20));
+  pointer-events: none;
+}
+
 .product-box {
   background: linear-gradient(180deg, #fffaf2, #f3e8d8);
   box-shadow: 0 35px 80px rgba(140, 100, 38, 0.18);
@@ -108,14 +106,14 @@ h1 {
 
 .product-box::before {
   content: "Aman\A Care";
+  padding-top: 130px;
   font-family: Georgia, 'Times New Roman', serif;
   color: #3d342d;
 }
 
 .product-box::after {
-  content: "♥";
-  background: linear-gradient(135deg, #c99a3d, #b99a8b);
-  font-size: 30px;
+  content: "";
+  background: transparent;
 }
 
 .orbit {
@@ -178,8 +176,23 @@ footer::before {
 }
 
 @media (max-width: 540px) {
+  .logo {
+    width: 46px;
+    height: 46px;
+  }
+
   .brand span:last-child {
     display: inline !important;
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  .product-stage::before {
+    width: 132px;
+    height: 132px;
+    top: 42px;
+  }
+
+  .product-box::before {
+    padding-top: 86px;
   }
 }
